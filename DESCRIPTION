@@ -1,0 +1,42 @@
+Package: DNAZooData
+Title: DNA Zoo data package
+Version: 0.98.0
+Date: 2022-08-16
+Authors@R: 
+    person(given = "Jacques",
+           family = "Serizay",
+           role = c("aut", "cre"),
+           email = "jacquesserizay@gmail.com")
+Description: 
+    DNAZooData is a data package giving programmatic access to genome 
+    assemblies and Hi-C contact matrices uniformly processed by the 
+    [DNA Zoo Consortium](https://www.dnazoo.org/). The matrices are available 
+    in the multi-resolution `.hic` format. A URL to corrected genome assemblies
+    in `.fastq` format is also provided to the end-user.
+License: MIT + file LICENSE
+URL: https://github.com/js2264/DNAZooData
+BugReports: https://github.com/js2264/DNAZooData/issues
+Depends:
+    R (>= 4.2),
+    HiCExperiment 
+Imports: 
+    BiocFileCache, 
+    S4Vectors, 
+    rjson, 
+    utils, 
+    tools
+Suggests:
+    dplyr, 
+    testthat, 
+    methods,
+    BiocStyle,
+    knitr, 
+    rmarkdown
+biocViews: 
+    ExperimentData, 
+    SequencingData
+Encoding: UTF-8
+VignetteBuilder: knitr
+LazyData: false
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3

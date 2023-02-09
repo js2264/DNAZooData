@@ -1,0 +1,82 @@
+---
+title: "DNAZooData"
+author: "Jacques Serizay"
+date: "`r Sys.Date()`"
+output: 
+    BiocStyle::html_document
+vignette: >
+    %\VignetteIndexEntry{DNAZooData}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+---
+
+```{r, eval = TRUE, echo=FALSE, results="hide", message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    comment = "#>"
+)
+suppressPackageStartupMessages({
+    library(DNAZooData)
+})
+```
+
+# Introduction 
+
+The [DNA Zoo Consortium](https://www.dnazoo.org/) 
+is a collaborative group whose aim is to correct and refine genome assemblies
+across the tree of life using Hi-C approaches. As of 2023, they have 
+performed Hi-C across more than 300 animal, plant and fungi species. 
+
+`DNAZooData` is a package giving programmatic access 
+to these uniformly processed Hi-C contact files, as well as the refined genome
+assemblies. 
+
+The `DNAZooData()` function provides a gateway to DNA Zoo-hosted Hi-C files, 
+fetching and caching relevant contact matrices in `.hic` format, and
+providing a direct URL to corrcted genome assemblies in `fasta` format.
+It returns a `HicFile` object, which can then be imported in memory using 
+`HiCExperiment::import()`. 
+
+`HiCFile` metadata also points to a URL to directly fetch the genome assembly 
+corrected by the DNA Zoo consortium.
+
+```{r}
+library(DNAZooData)
+head(DNAZooData())
+hicfile <- DNAZooData(species = 'Hypsibius_dujardini')
+S4Vectors::metadata(hicfile)$organism
+S4Vectors::metadata(hicfile)$assemblyURL
+```
+
+# Installation
+
+`DNAZooData` package can be installed from Bioconductor using the following
+command: 
+
+```{r eval = FALSE}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("DNAZooData")
+```
+
+# HiCExperiment and DNAZooData
+
+The `HiCExperiment` package can be used to import `.hic` files provided by 
+`DNAZooData`. Refer to `HiCExperiment` package documentation for further 
+information. 
+
+```{r}
+availableResolutions(hicfile)
+availableChromosomes(hicfile)
+x <- import(hicfile, resolution = 10000, focus = 'HiC_scaffold_4')
+x
+interactions(x)
+as(x, 'ContactMatrix')
+```
+
+# Session info
+
+```{r}
+sessionInfo()
+```
