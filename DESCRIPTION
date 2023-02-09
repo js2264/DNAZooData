@@ -1,7 +1,7 @@
 Package: DNAZooData
 Title: DNA Zoo data package
-Version: 0.98.0
-Date: 2022-08-16
+Version: 0.99.0
+Date: 2023-02-09
 Authors@R: 
     person(given = "Jacques",
            family = "Serizay",
