@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   DNAZooData: DNAZooData.html
-last_built: 2023-04-28T19:18Z
+last_built: 2023-04-28T19:20Z
 urls:
   reference: http://jserizay.com/DNAZooData/reference
   article: http://jserizay.com/DNAZooData/articles
